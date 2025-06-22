@@ -1,87 +1,151 @@
-# Welcome to React Router!
+# Revellier - Travel Dashboard & Landing Page
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A monorepo containing both the Revellier landing page and dashboard applications.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## 🏗️ Project Structure
 
-## Features
+```
+revellier-monorepo/
+├── apps/
+│   ├── dashboard/          # React Router Dashboard (with Appwrite)
+│   └── landing-page/       # Next.js Landing Page
+├── package.json            # Root package.json for monorepo
+└── README.md              # This file
+```
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## 🚀 Applications
 
-## Getting Started
+### 📊 Dashboard (`apps/dashboard/`)
+- **Framework**: React Router v7
+- **Authentication**: Appwrite
+- **Styling**: Tailwind CSS
+- **Features**: 
+  - User authentication with Google OAuth
+  - Admin dashboard with stats
+  - Trip management
+  - User management
+  - Real-time data
+
+### 🏠 Landing Page (`apps/landing-page/`)
+- **Framework**: Next.js
+- **Styling**: Tailwind CSS
+- **Features**:
+  - Marketing landing page
+  - No authentication required
+  - Links to dashboard for sign-in
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Appwrite account (for dashboard)
 
 ### Installation
 
-Install the dependencies:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ovien/Revellier-Dashboard.git
+   cd Revellier-Dashboard
+   ```
 
-```bash
-npm install
-```
+2. **Install dependencies for all apps**
+   ```bash
+   npm run install:all
+   ```
+
+3. **Set up environment variables**
+
+   **For Dashboard** (`apps/dashboard/.env.local`):
+   ```bash
+   VITE_APPWRITE_API_ENDPOINT=https://cloud.appwrite.io/v1
+   VITE_APPWRITE_PROJECT_ID=your_project_id
+   VITE_APPWRITE_DATABASE_ID=your_database_id
+   VITE_APPWRITE_USERS_COLLECTION_ID=your_users_collection_id
+   VITE_APPWRITE_TRIP_COLLECTION_ID=your_trip_collection_id
+   ```
+
+   **For Landing Page** (`apps/landing-page/.env.local`):
+   ```bash
+   NEXT_PUBLIC_DASHBOARD_URL=http://localhost:5173
+   ```
 
 ### Development
 
-Start the development server with HMR:
-
+**Run both applications simultaneously:**
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+**Run applications individually:**
+```bash
+# Dashboard only (port 5173)
+npm run dev:dashboard
 
-## Building for Production
+# Landing page only (port 3000)
+npm run dev:landing
+```
 
-Create a production build:
+### Building for Production
 
+**Build both applications:**
 ```bash
 npm run build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
+**Build individually:**
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm run build:dashboard
+npm run build:landing
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+## 🌐 Access Points
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
+- **Landing Page**: http://localhost:3000
+- **Dashboard**: http://localhost:5173
+- **Dashboard Sign-in**: http://localhost:5173/sign-in
+
+## 🔗 Linking Between Apps
+
+The landing page includes a sign-in button that redirects to the dashboard's sign-in page. This is configured via the `NEXT_PUBLIC_DASHBOARD_URL` environment variable.
+
+## 🚀 Deployment
+
+### Dashboard
+The dashboard can be deployed to:
+- Vercel
+- Netlify
+- Railway
+- Any platform supporting React Router
+
+### Landing Page
+The landing page can be deployed to:
+- Vercel (recommended for Next.js)
+- Netlify
 - Railway
 
-### DIY Deployment
+## 📝 Scripts
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start both applications in development mode |
+| `npm run dev:dashboard` | Start only the dashboard |
+| `npm run dev:landing` | Start only the landing page |
+| `npm run build` | Build both applications for production |
+| `npm run install:all` | Install dependencies for all applications |
 
-Make sure to deploy the output of `npm run build`
+## 🤝 Contributing
 
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test both applications
+5. Submit a pull request
 
-## Styling
+## 📄 License
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+MIT License - see LICENSE file for details.
 
 ---
 
-Built with ❤️ using React Router.
+Built with ❤️ by Ovie Okorodudu 
