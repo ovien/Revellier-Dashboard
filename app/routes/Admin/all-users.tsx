@@ -1,8 +1,10 @@
-import React from 'react'
-
+import { Header } from "Components"
 const AllUsers = () => {
   return (
-    <div>Users Table</div>
+    <main className="dashboard wrapper">
+      <Header title={'All Users'}
+      description={'Manage and track all your users'}/>
+    </main>
   )
 }
 
